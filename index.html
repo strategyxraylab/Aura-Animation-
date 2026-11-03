@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURA PETALS BEAUTY PARLOR</title>
+
+<style>
+:root {
+  --gold: #e8c477;
+  --pink: #f28bb5;
+  --dark: #100d11;
+  --cream: #fff4e8;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--dark);
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 15%, #422034, transparent 45%),
+    linear-gradient(120deg, #100d11, #21121d);
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.5s ease, transform 8s ease;
+  filter: brightness(.68);
+}
+
+.photo.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(12,8,13,.96) 0%,
+    rgba(12,8,13,.83) 37%,
+    rgba(12,8,13,.24) 75%,
+    rgba(12,8,13,.30) 100%
+  );
+}
+
+.topline {
+  position: absolute;
+  top: 4%;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 65px;
+  height: 65px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: 25px;
+  background: rgba(20,10,17,.75);
+  box-shadow: 0 0 25px #e8c47735;
+}
+
+.brand-name {
+  font-family: Georgia, serif;
+  font-size: clamp(18px, 2.2vw, 30px);
+  letter-spacing: 3px;
+  color: var(--cream);
+}
+
+.brand-tag {
+  color: var(--pink);
+  font-size: 12px;
+  letter-spacing: 4px;
+  margin-top: 6px;
+}
+
+.live {
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 3px;
+  border: 1px solid #e8c47780;
+  padding: 10px 16px;
+  border-radius: 30px;
+}
+
+.content {
+  position: absolute;
+  z-index: 2;
+  left: 7%;
+  top: 25%;
+  width: 48%;
+  max-width: 690px;
+}
+
+.eyebrow {
+  color: var(--pink);
+  font-size: clamp(12px, 1.2vw, 17px);
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: normal;
+  font-size: clamp(42px, 6.5vw, 88px);
+  line-height: 1.02;
+  margin: 0;
+  color: var(--cream);
+}
+
+h1 span { color: var(--gold); }
+
+.rule {
+  width: 100px;
+  height: 3px;
+  background: var(--pink);
+  margin: 28px 0;
+}
+
+.description {
+  font-family: Georgia, serif;
+  color: #f3e5df;
+  font-size: clamp(17px, 2vw, 25px);
+  line-height: 1.55;
+  max-width: 570px;
+}
+
+.services-title {
+  color: var(--gold);
+  letter-spacing: 4px;
+  font-size: 13px;
+  margin-top: 32px;
+  margin-bottom: 13px;
+}
+
+.services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.service {
+  border: 1px solid #f28bb580;
+  background: #321b2a99;
+  color: #fff4e8;
+  border-radius: 30px;
+  padding: 10px 15px;
+  font-size: clamp(12px, 1.15vw, 16px);
+}
+
+.bottom {
+  position: absolute;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-height: 95px;
+  background: rgba(12,8,13,.91);
+  border-top: 1px solid #e8c47780;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 5%;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.info-label {
+  color: var(--pink);
+  font-size: 11px;
+  letter-spacing: 3px;
+}
+
+.info-value {
+  color: var(--cream);
+  font-size: clamp(13px, 1.4vw, 19px);
+}
+
+.whatsapp {
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 13px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.counter {
+  position: absolute;
+  right: 5%;
+  bottom: 125px;
+  z-index: 4;
+  color: white;
+  font-size: 13px;
+  letter-spacing: 2px;
+  background: #100d11aa;
+  padding: 9px 14px;
+  border-radius: 20px;
+}
+
+.welcome {
+  position: absolute;
+  z-index: 3;
+  right: 5%;
+  top: 25%;
+  color: white;
+  text-align: right;
+  text-shadow: 0 2px 15px #000;
+  font-family: Georgia, serif;
+  font-size: clamp(18px, 2.2vw, 29px);
+}
+
+.welcome span {
+  display: block;
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 5px;
+  margin-top: 12px;
+}
+
+@media (max-width: 700px) {
+  .topline { top: 3%; }
+  .logo { width: 48px; height: 48px; font-size: 19px; }
+  .brand-name { font-size: 15px; letter-spacing: 1px; }
+  .brand-tag { font-size: 9px; letter-spacing: 2px; }
+  .live { display: none; }
+  .content { top: 19%; left: 6%; width: 88%; }
+  h1 { font-size: clamp(38px, 11vw, 65px); }
+  .description { font-size: 16px; max-width: 90%; }
+  .services-title { margin-top: 18px; }
+  .service { padding: 7px 10px; font-size: 11px; }
+  .welcome { display: none; }
+  .bottom {
+    min-height: 82px;
+    padding: 12px 4%;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .info-label { font-size: 9px; }
+  .info-value { font-size: 11px; }
+  .whatsapp { font-size: 11px; padding: 9px 12px; }
+  .counter { bottom: 95px; }
+}
+
+/* PHOTO-FIRST DISPLAY */
+.photo {
+  filter: brightness(1);
+  object-position: center;
+}
+
+.shade {
+  background: linear-gradient(
+    90deg,
+    rgba(12,8,13,.98) 0%,
+    rgba(12,8,13,.94) 38%,
+    rgba(12,8,13,.68) 48%,
+    rgba(12,8,13,.08) 70%,
+    transparent 100%
+  );
+}
+
+.content {
+  top: 21%;
+  left: 5%;
+  width: 41%;
+  max-width: 590px;
+  padding: 25px;
+  background: rgba(12,8,13,.82);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+}
+
+.welcome {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .content {
+    top: 17%;
+    left: 4%;
+    width: 55%;
+    padding: 12px;
+  }
+  .shade {
+    background: linear-gradient(90deg, rgba(12,8,13,.94), rgba(12,8,13,.62) 58%, transparent);
+  }
+}
+
+
+/* CINEMATIC PHOTO-FIRST SALON DISPLAY */
+.photo {
+  filter: brightness(.94) contrast(1.12) saturate(1.12);
+  object-fit: cover;
+  object-position: center;
+}
+
+.shade {
+  background:
+    linear-gradient(
+      0deg,
+      rgba(10,7,12,.96) 0%,
+      rgba(10,7,12,.72) 22%,
+      rgba(10,7,12,.12) 62%,
+      rgba(10,7,12,.08) 100%
+    );
+}
+
+.content {
+  top: auto;
+  bottom: 155px;
+  left: 6%;
+  width: 58%;
+  max-width: 760px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  text-shadow: 0 3px 18px rgba(0,0,0,.9);
+}
+
+.eyebrow {
+  text-shadow: 0 2px 12px #000;
+}
+
+h1 {
+  font-size: clamp(44px, 6.5vw, 92px);
+  text-shadow: 0 4px 22px #000;
+}
+
+.description {
+  color: #fff;
+  text-shadow: 0 2px 12px #000;
+}
+
+.service {
+  background: rgba(15,9,14,.72);
+  border-color: rgba(242,139,181,.8);
+  backdrop-filter: blur(5px);
+}
+
+.welcome {
+  display: block;
+  top: 24%;
+  right: 5%;
+  max-width: 30%;
+  color: #fff;
+  text-shadow: 0 3px 18px #000;
+}
+
+.bottom {
+  background: rgba(10,7,12,.94);
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 700px) {
+  .content {
+    bottom: 145px;
+    left: 5%;
+    width: 90%;
+    padding: 0;
+  }
+
+  .welcome {
+    display: none;
+  }
+
+  .shade {
+    background: linear-gradient(
+      0deg,
+      rgba(10,7,12,.98),
+      rgba(10,7,12,.65) 40%,
+      rgba(10,7,12,.08) 100%
+    );
+  }
+}
+\n
+/* AURA PETALS PREMIUM BRANDING */
+.brand-name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(25px, 3.5vw, 48px);
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #f4d38b;
+  text-shadow: 0 3px 18px rgba(232,196,119,.35);
+  line-height: 1.05;
+}
+
+.brand-tag {
+  font-size: clamp(11px, 1.3vw, 17px);
+  font-weight: bold;
+  letter-spacing: 6px;
+  color: #f28bb5;
+  margin-top: 9px;
+}
+
+/* CONTINUOUS MOVING INFORMATION */
+.moving-banner {
+  position: absolute;
+  z-index: 5;
+  top: 14%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(13,8,14,.86);
+  border-top: 1px solid rgba(232,196,119,.7);
+  border-bottom: 1px solid rgba(242,139,181,.7);
+  padding: 13px 0;
+}
+
+.moving-track {
+  display: flex;
+  width: max-content;
+  animation: moveInformation 48s linear infinite;
+}
+
+.moving-track span {
+  flex-shrink: 0;
+  padding: 0 35px;
+  color: #fff1df;
+  font-size: clamp(13px, 1.35vw, 19px);
+  font-weight: bold;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.moving-track span:nth-child(even) {
+  color: #f4c875;
+}
+
+@keyframes moveInformation {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 700px) {
+  .brand-name {
+    font-size: 23px;
+    letter-spacing: 1px;
+  }
+
+  .brand-tag {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  .moving-banner {
+    top: 13%;
+    padding: 10px 0;
+  }
+
+  .moving-track span {
+    font-size: 12px;
+  }
+}
+\n
+/* FINAL FIX: MOVING INFORMATION ABOVE THE BOTTOM FOOTER */
+.moving-banner {
+  position: absolute !important;
+  top: auto !important;
+  bottom: 95px !important;
+  left: 0 !important;
+  width: 100% !important;
+  min-height: 52px;
+  z-index: 20 !important;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: rgba(5, 4, 7, .98) !important;
+  border-top: 2px solid #e8c477;
+  border-bottom: 2px solid #f28bb5;
+  padding: 14px 0 !important;
+}
+
+.moving-track {
+  display: flex !important;
+  width: max-content;
+  align-items: center;
+  animation: moveInformation 35s linear infinite !important;
+}
+
+.moving-track span {
+  display: block;
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: #ffffff !important;
+  font-size: clamp(15px, 1.6vw, 22px) !important;
+  font-weight: 900 !important;
+  letter-spacing: 2px;
+  text-shadow: 0 1px 8px #e8c477;
+}
+
+@media (max-width: 700px) {
+  .moving-banner {
+    bottom: 82px !important;
+    min-height: 44px;
+    padding: 10px 0 !important;
+  }
+}
+\n</style>
+</head>
+
+<body>
+<div class="screen">
+
+  <img class="photo" id="photoA" alt="AURA PETALS salon photography">
+  <img class="photo" id="photoB" alt="AURA PETALS salon photography">
+  <div class="shade"></div>
+
+  <header class="topline">
+    <div class="brand">
+      <div class="logo">AP</div>
+      <div>
+        <div class="brand-name">AURA PETALS</div>
+        <div class="brand-tag">BEAUTY PARLOR</div>
+      </div>
+    </div>
+    <div class="live">✦ BEAUTY • STYLE • CONFIDENCE ✦</div>
+  </header>
+
+  <main class="content">
+    <div class="eyebrow">WELCOME TO YOUR BEAUTY DESTINATION</div>
+
+    <h1>Where Beauty <span>Blooms.</span></h1>
+
+    <div class="rule"></div>
+
+    <div class="description">
+      Discover your beauty. Celebrate your style.
+      Leave feeling confident, refreshed and beautiful.
+    </div>
+
+    <div class="services-title">OUR BEAUTY SERVICES</div>
+
+    <div class="services">
+      <div class="service">Nails & Pedicure</div>
+      <div class="service">Facial Treatments</div>
+      <div class="service">Wig Installation</div>
+      <div class="service">Eyebrow Shaping</div>
+      <div class="service">Lashes</div>
+      <div class="service">Ear Piercing</div>
+    </div>
+  </main>
+
+  <div class="welcome">
+    YOUR BEAUTY, OUR PASSION
+    <span>THE AURA PETALS EXPERIENCE</span>
+  </div>
+
+  <div class="counter" id="counter">PHOTO 1 / 51</div>
+
+  
+<div class="moving-banner">
+  <div class="moving-track">
+    <span>✦ BEAUTY SERVICES: NAILS • PEDICURE • FACIALS • WIG INSTALLATION • LASHES • EYEBROWS • EAR PIERCING</span>
+    <span>✦ BOOK YOUR APPOINTMENT TODAY • CALL / WHATSAPP: 0716 397 341</span>
+    <span>✦ FIND US: NDUMBU-INI 87 ROAD, OPPOSITE ELIM APARTMENTS</span>
+    <span>✦ FOLLOW AURA PETALS ON INSTAGRAM • FACEBOOK • TIKTOK</span>
+    <span>✦ BEAUTY • STYLE • CONFIDENCE • WHERE BEAUTY BLOOMS</span>
+    <span>✦ BEAUTY SERVICES: NAILS • PEDICURE • FACIALS • WIG INSTALLATION • LASHES • EYEBROWS • EAR PIERCING</span>
+    <span>✦ BOOK YOUR APPOINTMENT TODAY • CALL / WHATSAPP: 0716 397 341</span>
+  </div>
+</div>
+\n<footer class="bottom">
+    <div class="info">
+      <div class="info-label">VISIT OUR PARLOR</div>
+      <div class="info-value">Ndumbu-ini 87 Road, Opposite Elim Apartments</div>
+    </div>
+
+    <div class="info">
+      <div class="info-label">CALL / WHATSAPP</div>
+      <div class="info-value">0716 397 341</div>
+    </div>
+
+    <div class="whatsapp">✦ YOUR BEAUTY JOURNEY STARTS HERE</div>
+  </footer>
+
+</div>
+
+<script>
+const first = document.getElementById("photoA");
+const second = document.getElementById("photoB");
+const counter = document.getElementById("counter");
+
+let photos = [];
+let index = 0;
+let showingFirst = true;
+
+async function startSlideshow() {
+  try {
+    const response = await fetch("./photos.json");
+    if (!response.ok) throw new Error("Photo list not found");
+
+    photos = await response.json();
+
+    if (!photos.length) throw new Error("No photos found");
+
+    showNextPhoto();
+    setInterval(showNextPhoto, 8000);
+  } catch (error) {
+    counter.textContent = "PLEASE CHECK PHOTO FILES";
+    console.error(error);
+  }
+}
+
+function showNextPhoto() {
+  const current = showingFirst ? first : second;
+  const next = showingFirst ? second : first;
+
+  const filename = encodeURIComponent(photos[index]);
+  next.onload = () => {
+    next.classList.add("show");
+    current.classList.remove("show");
+  };
+
+  next.onerror = () => {
+    console.log("Could not load:", photos[index]);
+    index = (index + 1) % photos.length;
+    showNextPhoto();
+  };
+
+  next.src = "./images/" + filename;
+  counter.textContent = "PHOTO " + (index + 1) + " / " + photos.length;
+
+  index = (index + 1) % photos.length;
+  showingFirst = !showingFirst;
+}
+
+startSlideshow();
+</script>
+</body>
+</html>
